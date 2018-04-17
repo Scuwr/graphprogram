@@ -1,0 +1,13 @@
+N	//directed
+N	//weighted
+4	//number of vertices
+3	//(out) degree of vertex 1
+2	//arc/link to vertex 2
+3	//arc/link to vertex 3
+4	//arc/link to vertex 4
+1	//(out) degree of vertex 2
+1	//arc/link to vertex 1
+1	//(out) degree of vertex 3
+1	//arc/link to vertex 1
+1	//(out) degree of vertex 4
+1	//arc/link to vertex 1

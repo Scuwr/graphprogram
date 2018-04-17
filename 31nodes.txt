@@ -1,0 +1,101 @@
+N	//directed
+N	//weighted
+31	//number of vertices
+5	//(out) degree of vertex 1
+2	//arc/link to vertex 2
+29	//arc/link to vertex 29
+28	//arc/link to vertex 28
+15	//arc/link to vertex 15
+22	//arc/link to vertex 22
+2	//(out) degree of vertex 2
+1	//arc/link to vertex 1
+8	//arc/link to vertex 8
+4	//(out) degree of vertex 3
+4	//arc/link to vertex 4
+25	//arc/link to vertex 25
+17	//arc/link to vertex 17
+10	//arc/link to vertex 10
+2	//(out) degree of vertex 4
+3	//arc/link to vertex 3
+6	//arc/link to vertex 6
+1	//(out) degree of vertex 5
+12	//arc/link to vertex 12
+2	//(out) degree of vertex 6
+4	//arc/link to vertex 4
+21	//arc/link to vertex 21
+3	//(out) degree of vertex 7
+8	//arc/link to vertex 8
+23	//arc/link to vertex 23
+27	//arc/link to vertex 27
+2	//(out) degree of vertex 8
+2	//arc/link to vertex 2
+7	//arc/link to vertex 7
+3	//(out) degree of vertex 9
+31	//arc/link to vertex 31
+16	//arc/link to vertex 16
+20	//arc/link to vertex 20
+2	//(out) degree of vertex 10
+3	//arc/link to vertex 3
+12	//arc/link to vertex 12
+3	//(out) degree of vertex 11
+15	//arc/link to vertex 15
+21	//arc/link to vertex 21
+30	//arc/link to vertex 30
+2	//(out) degree of vertex 12
+5	//arc/link to vertex 5
+10	//arc/link to vertex 10
+2	//(out) degree of vertex 13
+3	//arc/link to vertex 3
+17	//arc/link to vertex 17
+1	//(out) degree of vertex 14
+17	//arc/link to vertex 17
+3	//(out) degree of vertex 15
+1	//arc/link to vertex 1
+11	//arc/link to vertex 11
+28	//arc/link to vertex 28
+2	//(out) degree of vertex 16
+9	//arc/link to vertex 9
+31	//arc/link to vertex 31
+4	//(out) degree of vertex 17
+3	//arc/link to vertex 3
+14	//arc/link to vertex 14
+13	//arc/link to vertex 13
+26	//arc/link to vertex 26
+1	//(out) degree of vertex 18
+21	//arc/link to vertex 21
+1	//(out) degree of vertex 19
+24	//arc/link to vertex 24
+3	//(out) degree of vertex 20
+23	//arc/link to vertex 23
+9	//arc/link to vertex 9
+22	//arc/link to vertex 22
+3	//(out) degree of vertex 21
+11	//arc/link to vertex 11
+6	//arc/link to vertex 6
+18	//arc/link to vertex 18
+2	//(out) degree of vertex 22
+1	//arc/link to vertex 1
+20	//arc/link to vertex 20
+2	//(out) degree of vertex 23
+7	//arc/link to vertex 7
+20	//arc/link to vertex 20
+2	//(out) degree of vertex 24
+19	//arc/link to vertex 19
+31	//arc/link to vertex 31
+1	//(out) degree of vertex 25
+3	//arc/link to vertex 3
+1	//(out) degree of vertex 26
+17	//arc/link to vertex 17
+1	//(out) degree of vertex 27
+7	//arc/link to vertex 7
+2	//(out) degree of vertex 28
+1	//arc/link to vertex 1
+15	//arc/link to vertex 15
+1	//(out) degree of vertex 29
+1	//arc/link to vertex 1
+1	//(out) degree of vertex 30
+11	//arc/link to vertex 11
+3	//(out) degree of vertex 31
+9	//arc/link to vertex 9
+16	//arc/link to vertex 16
+24	//arc/link to vertex 24
