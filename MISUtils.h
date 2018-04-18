@@ -42,7 +42,8 @@ private:
    int** D;
    int* X;
 
-   int cost;
+   int* cost;
+   int fCost;
    
 
    int*** adj_matrix;

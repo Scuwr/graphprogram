@@ -296,6 +296,7 @@ void MISUtils::init(){
    S = new int*[gu->nvertices]();
    D = new int*[gu->nvertices]();
    X = new int[gu->nvertices]();
+   cost = new int[gu->nvertices]();
   
    adj_matrix = new int**[gu->nvertices / 2 + 1]();
 
@@ -311,13 +312,11 @@ void MISUtils::init(){
    }
 
    k = 0; //set state of k and max_ind(the maximum size of an MIS)
-   cost = 0;
    maximum = 0; 
    eq38 = false;		//says whether or not equation 3.8 is satisfied
    done = false;
    print_MIS = false;
-
-   gu->printAdjMatrix();
+   fCost = gu->nvertices;
 }
 
 //MIS only
@@ -470,6 +469,7 @@ int MISUtils::step5_h(char MIS_or_clique) {
       gu->MISfile << "step 5:" << std::endl << "  k = " << k;
    }
    if (k >= 0) {
+      cost[k + 1] = 0;
       Qplus[k][(X[k]) - 1] = 0;			//remove xk from Q+ and...
       Qminus[k][(X[k]) - 1] = X[k];	//add it to Q-
       for (a = 0; a < gu->nvertices; a++) {
@@ -522,13 +522,6 @@ int MISUtils::step2_h(char directed, char MIS_or_clique) {
       }
    }
 
-   if (xk == 7) {
-      printAdjMatrix(k + 1);
-   }
-   else {
-      printAdjMatrix(k + 1);
-   }
-
    D[k + 1][xk - 1] = xk;
    // determine smallest degree in adjacency matrix
    int min = gu->nvertices;
@@ -541,20 +534,27 @@ int MISUtils::step2_h(char directed, char MIS_or_clique) {
          if (sum < min) {
             min = sum;
          }
-      }      
+      }
    }
 
-   // set Q+k to only those with the smallest degree vertices
-   for (int i = 0; i < gu->nvertices; i++) {
-      int sum = 0;
-      for (int j = 0; j < gu->nvertices; j++) {
-         sum += adj_matrix[k+1][i][j];
-      }
-      if (sum == min) {
-         if (D[k + 1][i] == 0) {
-            Qplus[k + 1][i] = i + 1;
+   if (cost[k] + min < fCost) {
+      cost[k + 1] = cost[k] + min;
+
+      // set Q+k to only those with the smallest degree vertices
+      for (int i = 0; i < gu->nvertices; i++) {
+         int sum = 0;
+         for (int j = 0; j < gu->nvertices; j++) {
+            sum += adj_matrix[k + 1][i][j];
+         }
+         if (sum == min) {
+            if (D[k + 1][i] == 0) {
+               Qplus[k + 1][i] = i + 1;
+            }
          }
       }
+   }
+   else {
+      cost[k + 1] = cost[k];
    }
 
    for (a = 0; a<gu->nvertices; a++) {
@@ -644,6 +644,10 @@ int MISUtils::step4_h(char directed, char MIS_or_clique)
       if (sSize>maximum)
       {
          maximum = sSize;
+      }
+      fCost = cost[k];
+      for (int i = 0; i < gu->nvertices; i++) {
+         Qplus[k - 1][i] = 0;
       }
       k = step5_h(MIS_or_clique);
    }

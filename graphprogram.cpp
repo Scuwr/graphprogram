@@ -267,7 +267,6 @@ gu->adj_cost_matrix[current_vtx][to_vtx-1]=gu->adj_cost_matrix[to_vtx-1][current
 		}		//end for #2 
 	}		//end for #1
 	gu->outputfile<<"Data for "<<inputfile<<":"<<endl;
-	print_adj_matrix();
 	return directed;
 }
 //------------------------end file input
@@ -506,7 +505,6 @@ char interactive_input(void)
 	{
 		gu->outputfile<<"Data for your graph:"<<endl;
 	}
-	print_adj_matrix();
 	return directed;
 }
 //--------------------------------------end interactive input
