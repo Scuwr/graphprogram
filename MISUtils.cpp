@@ -236,40 +236,44 @@ int MISUtils::step4(char directed, char MIS_or_clique)
       {
          gu->MISfile<<"step 4:  Q+ and Q- are empty"<<std::endl<<"  Maximal independent set:  [";
       }
+      
       if (MIS_or_clique=='m')
       {
-         gu->MISets<<"Maximal independent set:  [";
-         std::cout<<"Maximal independent set:  [";
+         //gu->MISets<<"Maximal independent set:  [";
+         //std::cout<<"Maximal independent set:  [";
       }
       else
       {
-         gu->MISets<<"clique:  [";
-         std::cout<<"clique:  [";
+         //gu->MISets<<"clique:  [";
+         //std::cout<<"clique:  [";
       }
       for(a=0;a<gu->nvertices;a++)
       {
          if (S[k][a]!=0)//print the mis
          {
-            std::cout.width(3);
-            std::cout<<S[k][a];
+            //std::cout.width(3);
+            //std::cout<<S[k][a];
             if (print_MIS)
             {
                gu->MISfile.width(3);
                gu->MISfile<<S[k][a];
             }
-            gu->MISets.width(3);
-            gu->MISets<<S[k][a];
+            //gu->MISets.width(3);
+            //gu->MISets<<S[k][a];
             sSize++;
          }
       }
-      std::cout<<"]"<<std::endl;
-      gu->MISets<<"]"<<std::endl;
+      //std::cout<<"]"<<std::endl;
+      //gu->MISets<<"]"<<std::endl;
       if (print_MIS)
       {
          gu->MISfile<<"]"<<"  Go to step 5"<<std::endl;
       }
       if (sSize>maximum)
       {
+         for(int i = 0; i < gu->nvertices; i++){
+            fS[i] = S[k][i];
+         }
          maximum=sSize;
       }
       k=step5(MIS_or_clique);
@@ -286,10 +290,6 @@ int MISUtils::step4(char directed, char MIS_or_clique)
    return k;
 }
 
-void MISUtils::updateEdgeCount() {
-
-}
-
 void MISUtils::init(){
    Qminus = new int*[gu->nvertices]();
    Qplus = new int*[gu->nvertices]();
@@ -297,6 +297,7 @@ void MISUtils::init(){
    D = new int*[gu->nvertices]();
    X = new int[gu->nvertices]();
    cost = new int[gu->nvertices]();
+   fS = new int[gu->nvertices]();
   
    adj_matrix = new int**[gu->nvertices / 2 + 1]();
 
@@ -332,7 +333,7 @@ int MISUtils::MIS(char directed){
          std::cout<<"Illegal input, please try again"<<std::endl;
       }
    }while((print_MIS!='N')&&(print_MIS!='Y'));
-   start=clock();
+   auto start = std::chrono::high_resolution_clock::now();
    for (int i=0; i<gu->nvertices; i++){
       this->Qplus[0][i]=(i+1);//set Q+0 to all vertices
    }
@@ -354,13 +355,21 @@ int MISUtils::MIS(char directed){
          k=step4(directed, 'm');
       }
    }while(!done);
-   finish=clock();
-   duration=(finish-start)/CLOCKS_PER_SEC;		//calculate amount of time it took
-   std::cout<<"independence number = "<< maximum << std::endl  << "MIS caculation took " << duration << " seconds." << std::endl;
+   auto finish=std::chrono::high_resolution_clock::now();
+   std::cout << "Maximum Independent Set: [";
+   for(int i = 0; i < gu->nvertices; i++){
+      if(fS[i] != 0){
+         std::cout.width(3);
+         std::cout << fS[i];
+      }
+   }
+   std::cout << "]\n";
+   auto duration = (finish - start).count() / 1000;		//calculate amount of time it took
+   std::cout<<"independence number = "<< maximum << std::endl  << "MIS calculation took " << duration << " us." << std::endl;
    if (this->print_MIS){
       gu->MISfile<<"independence number = "<<maximum<<std::endl;
    }
-   gu->MISets<<"  independence number = "<<maximum<<std::endl<<"MIS calculation took "<<duration<<" seconds."<<std::endl;
+   gu->MISets<<"  independence number = "<<maximum<<std::endl<<"MIS calculation took "<<duration<<" us."<<std::endl;
    return 0;
 }
 
@@ -611,38 +620,41 @@ int MISUtils::step4_h(char directed, char MIS_or_clique)
       }
       if (MIS_or_clique == 'm')
       {
-         gu->MISets << "Maximal independent set:  [";
-         std::cout << "Maximal independent set:  [";
+         //gu->MISets << "Maximal independent set:  [";
+         //std::cout << "Maximal independent set:  [";
       }
       else
       {
-         gu->MISets << "clique:  [";
-         std::cout << "clique:  [";
+         //gu->MISets << "clique:  [";
+         //std::cout << "clique:  [";
       }
       for (a = 0; a<gu->nvertices; a++)
       {
          if (S[k][a] != 0)//print the mis
          {
-            std::cout.width(3);
-            std::cout << S[k][a];
+            //std::cout.width(3);
+            //std::cout << S[k][a];
             if (print_MIS)
             {
                gu->MISfile.width(3);
                gu->MISfile << S[k][a];
             }
-            gu->MISets.width(3);
-            gu->MISets << S[k][a];
+            //gu->MISets.width(3);
+            //gu->MISets << S[k][a];
             sSize++;
          }
       }
-      std::cout << "]" << std::endl;
-      gu->MISets << "]" << std::endl;
+      //std::cout << "]" << std::endl;
+      //gu->MISets << "]" << std::endl;
       if (print_MIS)
       {
          gu->MISfile << "]" << "  Go to step 5" << std::endl;
       }
       if (sSize>maximum)
       {
+         for(int i = 0; i < gu->nvertices; i++){
+            fS[i] = S[k][i];
+         }
          maximum = sSize;
       }
       fCost = cost[k];
@@ -677,7 +689,7 @@ int MISUtils::H_MIS(char directed){
       }
    } while( ( print_MIS != 'N' ) && ( print_MIS != 'Y' ) );
 
-   start = clock();
+   auto start = std::chrono::high_resolution_clock::now();
    // determine smallest degree in adjacency matrix
    int min = gu->nvertices;
    for (int i = 0; i < gu->nvertices; i++) {
@@ -721,6 +733,9 @@ int MISUtils::H_MIS(char directed){
 
    k = step2_h(directed, 'm');
    do {
+      if(k == 0){
+         std::cout << "break" << std::endl;
+      }
       if(eq38){	//equation 3.8 is satisfied, go to step 5
          k = step5_h('m');
       }
@@ -728,13 +743,21 @@ int MISUtils::H_MIS(char directed){
          k = step4_h(directed, 'm');
       }
    } while(!done);
-   finish = clock();
-   duration = ( finish - start ) / CLOCKS_PER_SEC;		//calculate amount of time it took
-   std::cout << "independence number = " << maximum << std::endl << "MIS calculation took " << duration << " seconds." << std::endl;
+   auto finish = std::chrono::high_resolution_clock::now();
+   std::cout << "Maximum Independent Set: [";
+   for(int i = 0; i < gu->nvertices; i++){
+      if(fS[i] != 0){
+         std::cout.width(3);
+         std::cout << fS[i];
+      }
+   }
+   std::cout << "]\n";
+   auto duration = (finish - start).count() / 1000;		//calculate amount of time it took
+   std::cout << "independence number = " << maximum << std::endl << "MIS calculation took " << duration << " us." << std::endl;
    if(this->print_MIS){
       gu->MISfile << "independence number = " << maximum << std::endl;
    }
-   gu->MISets << "  independence number = " << maximum << std::endl << "MIS calculation took " << duration << " seconds." << std::endl;
+   gu->MISets << "  independence number = " << maximum << std::endl << "MIS calculation took " << duration << " us." << std::endl;
    return 0;
 }
 

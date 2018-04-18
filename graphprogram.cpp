@@ -1696,8 +1696,6 @@ do{
 			return choice;
 		}
 	}while((choice != 'X')&&(choice!='F')&&(choice!='I'));
-	
-   MISUtils mu(gu);
    
    do{
 		function=graph_menus_functions();	//obtain function to be performed
@@ -1710,14 +1708,14 @@ do{
 			dfs(start);
 		}
       if( 'C' == function ) {
-         mu.clique(directed );
+         MISUtils(gu).clique(directed );
       }
 		if ('M' == function)			//MIS and clique
 		{
-			mu.MIS(directed);
+         MISUtils(gu).MIS(directed);
 		}
       if( 'H' == function ) {
-         mu.H_MIS(directed);
+         MISUtils(gu).H_MIS(directed);
       }
 		if ('T' == function)			//number of spanning trees
 		{
@@ -1740,6 +1738,7 @@ do{
 		{
 			strong_component(directed);
 			dfs(start);
+         MISUtils mu(gu);
 			mu.MIS(directed);
          mu.H_MIS(directed);
 			mu.clique(directed);

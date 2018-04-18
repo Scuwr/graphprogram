@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <chrono>
 
 #include "GraphUtils.h"
 
@@ -23,8 +24,6 @@ public:
    int H_MIS(char directed);
    int clique(char directed);
 
-   void updateEdgeCount();
-
    void printQPlus();
    void printQMinus();
    void printS();
@@ -43,14 +42,13 @@ private:
    int* X;
 
    int* cost;
+   int * fS;
    int fCost;
    
-
    int*** adj_matrix;
 
    int k, maximum; //state of k and max_ind(the maximum size of an MIS)
-   double start, finish, duration;	//will be used for determining time of calculation
-   
+
    bool eq38 = false;		//says whether or not equation 3.8 is satisfied
    bool done = false;
    bool print_MIS = false;
