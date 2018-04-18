@@ -20,3 +20,13 @@ GraphUtils::GraphUtils(int vertices){
       this->clique_adj[i] = new short[vertices]();
    }
 }
+
+void GraphUtils::printAdjMatrix() {
+   for (int i = 0; i < nvertices; i++) {
+      for (int j = 0; j < nvertices; j++) {
+         std::cout << adj_cost_matrix[i][j] << " ";
+      }
+      std::cout << "\n";
+   }
+   std::cout << std::endl;
+}

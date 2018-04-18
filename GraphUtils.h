@@ -8,6 +8,8 @@ class GraphUtils{
 public:
    static GraphUtils* New(int vertices);
 
+   void printAdjMatrix();
+
    int nvertices;				//will be the actual number of vertices in the graph
    double** adj_cost_matrix;//cost and adjacency matrix (combined)
    double** M;//matrix for determining number of spanning trees

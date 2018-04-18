@@ -14,9 +14,22 @@ public:
    int step4(char directed, char MIS_or_clique);
    int step5(char MIS_or_clique);
 
+   int step2_h(char directed, char MIS_or_clique);
+   int step4_h(char directed, char MIS_or_clique);
+   int step5_h(char MIS_or_clique);
+   bool equation_3_8_h(char MIS_or_clique);
+
    int MIS(char directed);
    int H_MIS(char directed);
    int clique(char directed);
+
+   void updateEdgeCount();
+
+   void printQPlus();
+   void printQMinus();
+   void printS();
+   void printD();
+   void printAdjMatrix(int d);
 
 private:
    void init();
@@ -26,7 +39,13 @@ private:
    int** Qminus;
    int** Qplus;
    int** S;
+   int** D;
    int* X;
+
+   int cost;
+   
+
+   int*** adj_matrix;
 
    int k, maximum; //state of k and max_ind(the maximum size of an MIS)
    double start, finish, duration;	//will be used for determining time of calculation
